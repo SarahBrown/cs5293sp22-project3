@@ -1,0 +1,10 @@
+Statology, https://www.statology.org/pandas-add-row-to-dataframe/, How to add pandas row
+GeeksForGeeks, https://www.geeksforgeeks.org/how-to-write-pandas-dataframe-as-tsv-using-python/, Save pandas df as tsv file
+Stackoverflow, https://stackoverflow.com/questions/60166302/filtering-entities-based-on-the-type-person-org-etc-in-spacy, Get filtered list of ents
+Golinuxcloud, https://www.golinuxcloud.com/filter-pandas-dataframe-by-column-value/, Filter pandas to specific column value
+Statology, https://www.statology.org/drop-index-pandas/, Drop index while saving df
+Geeksforgeeks, https://www.geeksforgeeks.org/creating-pandas-dataframe-using-list-of-lists/, Make pandas df from lists
+Stackoverflow, https://stackoverflow.com/questions/29523254/python-remove-stop-words-from-pandas-dataframe, Remove stopwords from pandas per column and also help understanding pandas/lambda in general
+Stackoverflow, https://stackoverflow.com/questions/66338970/cleaning-text-using-nltk, More information about cleaning with nltk on a pandas dataframes
+https://www.statology.org/pandas-select-rows-based-on-column-values/
+https://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html
