@@ -6,5 +6,7 @@ Statology, https://www.statology.org/drop-index-pandas/, Drop index while saving
 Geeksforgeeks, https://www.geeksforgeeks.org/creating-pandas-dataframe-using-list-of-lists/, Make pandas df from lists
 Stackoverflow, https://stackoverflow.com/questions/29523254/python-remove-stop-words-from-pandas-dataframe, Remove stopwords from pandas per column and also help understanding pandas/lambda in general
 Stackoverflow, https://stackoverflow.com/questions/66338970/cleaning-text-using-nltk, More information about cleaning with nltk on a pandas dataframes
-https://www.statology.org/pandas-select-rows-based-on-column-values/
-https://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html
+Statology, https://www.statology.org/pandas-select-rows-based-on-column-values/, Helped clarify how to filter pandas based on column values
+Scikit-learn, https://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html, Documentation about MLPClassifier
+Stackoverflow, https://stackoverflow.com/questions/56107259/how-to-save-a-trained-model-by-scikit-learn, Helped determine how to save a sklearn model via pickle
+Tutorialspoint, https://www.tutorialspoint.com/How-to-randomize-the-items-of-a-list-in-Python, Shuffle list

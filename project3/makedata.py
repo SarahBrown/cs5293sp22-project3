@@ -1,13 +1,12 @@
 import argparse
 import glob
-import sys
-import os
 import re
 
 import nltk
 import spacy
 import en_core_web_lg
 import pandas as pd
+import random
 
 nlp = en_core_web_lg.load()
 
@@ -15,7 +14,8 @@ def redact_names(input_files, training_set_to_submit):
     """Function to redact names in input text file and generate test data."""
     # loops through each input file and finds names
     df = pd.DataFrame(columns =['github', 'type', 'name', 'context'])
-    
+
+
     if (not training_set_to_submit):
         num_files = len(input_files)
         num_train = int(num_files*0.66)
@@ -23,25 +23,46 @@ def redact_names(input_files, training_set_to_submit):
         num_valid = int(num_left*0.66)
         num_test = num_left-num_valid
 
-        for i in range(0,num_train):
-            inp = re.sub("<br /><br />", " ", input_files[i])
+        for input in range(0,num_train):
+            inp = re.sub("<br /><br />", " ", input_files[input])
             redacted = redact_per_sent(inp)
 
-            for redact in redacted:
-                df.loc[len(df.index)] = ['SarahBrown', 'training', redact[0], redact[1]]
+            for i in range(len(redacted)):
+                if (i % 3 == 0):
+                    df.loc[len(df.index)] = ['SarahBrown', 'training', redacted[i][0], redacted[i][1]]
+                elif (i % 3 == 1):
+                    df.loc[len(df.index)] = ['SarahBrown', 'validation', redacted[i][0], redacted[i][1]]
+                else:
+                    df.loc[len(df.index)] = ['SarahBrown', 'testing', redacted[i][0], redacted[i][1]]
+            
+            if (input%100 == 0):
+                print(f'{input}/{num_train}')
+
+        print(f'{num_train} files done.')
+
         
-        for i in range(num_train,num_train+num_valid):
-            inp = re.sub("<br /><br />", " ", input_files[i])
+        for input in range(num_train,num_train+num_valid):
+            inp = re.sub("<br /><br />", " ", input_files[input])
             redacted = redact_per_sent(inp)
 
-            for redact in redacted:
-                df.loc[len(df.index)] = ['SarahBrown', 'validation', redact[0], redact[1]]
+            for i in range(len(redacted)):
+                df.loc[len(df.index)] = ['SarahBrown', 'training', redacted[i][0], redacted[i][1]]
+            
+            if (input%100 == 0):
+                print(f'{input}/{num_valid}')
 
-        for i in range(num_train+num_valid,num_train+num_valid+num_test):
-            inp = re.sub("<br /><br />", " ", input_files[i])
+        print(f'{num_train+num_valid} files done.')
+
+        for input in range(num_train+num_valid,num_train+num_valid+num_test):
+            inp = re.sub("<br /><br />", " ", input_files[input])
             redacted = redact_per_sent(inp)
-            for redact in redacted:
-                df.loc[len(df.index)] = ['SarahBrown', 'testing', redact[0], redact[1]]
+
+            for i in range(len(redacted)):
+                df.loc[len(df.index)] = ['SarahBrown', 'training', redacted[i][0], redacted[i][1]]
+
+            if (input%100 == 0):
+                print(f'{input}/{num_test}')
+
         
         return df
 
@@ -117,7 +138,7 @@ def add_arguments():
 
 def get_inputfiles(input_glob):
     """Function to process glob and add input files."""
-    files = sorted(glob.glob(input_glob)) # reads in glob files and sorts them alphabetically for ease of debugging
+    files = glob.glob(input_glob) # reads in glob files
     file_list = []
 
     # opens each file in glob and adds text of file to a list
@@ -126,6 +147,7 @@ def get_inputfiles(input_glob):
         file_list.append(file.read()) # text to list
         file.close()
 
+    random.shuffle(file_list)
     return file_list # returns list
 
 def main():
