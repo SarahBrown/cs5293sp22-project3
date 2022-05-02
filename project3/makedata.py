@@ -49,7 +49,7 @@ def redact_names(input_files, training_set_to_submit):
                 df.loc[len(df.index)] = ['SarahBrown', 'training', redacted[i][0], redacted[i][1]]
             
             if (input%100 == 0):
-                print(f'{input}/{num_valid}')
+                print(f'{input}/{num_train+num_valid}')
 
         print(f'{num_train+num_valid} files done.')
 
@@ -61,7 +61,7 @@ def redact_names(input_files, training_set_to_submit):
                 df.loc[len(df.index)] = ['SarahBrown', 'training', redacted[i][0], redacted[i][1]]
 
             if (input%100 == 0):
-                print(f'{input}/{num_test}')
+                print(f'{input}/{num_test+num_train+num_valid}')
 
         
         return df
@@ -95,7 +95,10 @@ def redact_per_sent(inp):
                 if (ent.label_ == "PERSON"):
                     redact_sent = redact(sent.text, ent.start_char, ent.start_char+len(ent.text)) # sent to redact, start char, end char
 
-                    if (char_len(redact_sent) > 1000):
+                    if (char_len(redact_sent) < 100):
+                        break
+
+                    elif (char_len(redact_sent) > 1000):
                         if (ent.start == 0):
                             redact_sent = redact_sent[:10]
                         elif (ent.start == len(redact_sent)-1):
