@@ -10,3 +10,5 @@ Statology, https://www.statology.org/pandas-select-rows-based-on-column-values/,
 Scikit-learn, https://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html, Documentation about MLPClassifier
 Stackoverflow, https://stackoverflow.com/questions/56107259/how-to-save-a-trained-model-by-scikit-learn, Helped determine how to save a sklearn model via pickle
 Tutorialspoint, https://www.tutorialspoint.com/How-to-randomize-the-items-of-a-list-in-Python, Shuffle list
+ Anna Widiger, https://gist.github.com/widiger-anna/deefac010da426911381c118a97fc23f, Helped understand how to remove contractions with regex
+Askpython, https://www.askpython.com/python/list/python-list-comprehension, Python syntax
