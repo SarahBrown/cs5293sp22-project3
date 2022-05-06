@@ -10,6 +10,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
+from sklearn.pipeline import FeatureUnion
 
 import spacy
 import en_core_web_lg
@@ -17,9 +18,11 @@ nlp = en_core_web_lg.load()
 stopwords = nlp.Defaults.stop_words
 
 def process_sent(df_part):
-    y = df_part.drop(['context'],axis=1)
+    y = df_part.drop(['context','github'],axis=1)
 
     df_part = clean_context(df_part)
+    df_part['no_stop'] =  df_part['context_tidy'].apply(lambda x: ' '.join([word for word in x.split() if word not in (stopwords)])) # removes stop words
+    X_nostop = df_part.drop(['name','context','context_tidy','github','redact_len'],axis=1)
     df_part['pos_window'] = df_part['context_tidy'].apply(lambda x: make_pos_window(x))    
     df_part['word-2'] = df_part['pos_window'].apply(lambda x: x[0])
     df_part['pos-2'] = df_part['pos_window'].apply(lambda x: x[1])
@@ -29,16 +32,16 @@ def process_sent(df_part):
     df_part['pos+1'] = df_part['pos_window'].apply(lambda x: x[5])
     df_part['word+2'] = df_part['pos_window'].apply(lambda x: x[6])
     df_part['pos+2'] = df_part['pos_window'].apply(lambda x: x[7])
-    df_part['no_stop'] =  df_part['context_tidy'].apply(lambda x: ' '.join([word for word in x.split() if word not in (stopwords)])) # removes stop words
 
-    X = df_part.drop(['name', 'context','context_tidy','pos_window'],axis=1)
-    return X, y
+    X = df_part.drop(['name', 'context','context_tidy','pos_window','no_stop','github'],axis=1)
+    return X, y, X_nostop
 
 def clean_context(df):
     df['redact_len'] = df['context'].apply(lambda x: count_redact(x))
     df['context_tidy'] = df['context'].apply(lambda x: re.sub(r'(\w+)n\'t', r'\g<1>' + " not", x))
     df['context_tidy'] = df['context_tidy'].apply(lambda x: re.sub('\u2588+','REDACTED',x)) # removes redacted text
-    df['context_tidy'] = df['context_tidy'].apply(lambda x: re.sub('[^a-zA-Z ]', ' ', x)) # removes punctuation
+    df['context_tidy'] = df['context_tidy'].apply(lambda x: re.sub('[^a-zA-Z \' \"]', ' ', x)) # removes punctuation
+    df['context_tidy'] = df['context_tidy'].apply(lambda x: re.sub('[\'\"]', '', x)) # removes punctuation
     df['context_tidy'] = df['context_tidy'].apply(lambda x: re.sub(' +', ' ', x)) # replaces extra spaces
 
     return df
@@ -90,7 +93,7 @@ def load_data(local):
     if (local): 
         # loads data from tsv and separates based on data type (train, test, valid)
         with open('resources/unredactor.tsv') as file:
-            tsv_file = csv.reader(file, delimiter="\t")
+            tsv_file = csv.reader(file, delimiter='\t+')
             
             # printing data line by line
             for line in tsv_file:
@@ -110,11 +113,13 @@ def train_model(X, y):
     clf.fit(X,y)
 
     print("trained")
-    print(clf.score(X,y))
 
     with open('model.pkl','wb') as f:
         pickle.dump(clf,f)
     print("model saved")
+
+    print(clf.score(X,y))
+
 
 def how_much_data_overlap(y_train, y_test, y_valid):
     y_train_set = set()
@@ -172,46 +177,56 @@ def main():
     # load and convert data
     use_local_file = True
     data_df = load_data(use_local_file)
-    X, y = process_sent(data_df)
-    X = X.drop(['github'], axis=1)
-    y = y.drop(['github'], axis=1)
+    X, y, X_nostop = process_sent(data_df)
     
     dict = DictVectorizer(sparse=False)
     X_train = (X.loc[X['type'] == 'training']).drop(['type'], axis=1)
     X_test  = (X.loc[X['type'] == 'testing']).drop(['type'], axis=1)
     X_valid = (X.loc[X['type'] == 'validation']).drop(['type'], axis=1)
 
+    # X_train_nostop = (X_nostop.loc[X_nostop['type'] == 'training']).drop(['type',], axis=1)
+    # X_train_nostop = np.reshape(X_train_nostop, (X_train_nostop.shape[0],1))
+    # X_test_nostop  = (X_nostop.loc[X_nostop['type'] == 'testing']).drop(['type',], axis=1)
+    # X_valid_nostop = (X_nostop.loc[X_nostop['type'] == 'validation']).drop(['type',], axis=1)
+
     y_train = list((y.loc[X['type'] == 'training']).drop(['type'], axis=1).to_numpy().flatten())
     y_test  = list((y.loc[X['type'] == 'testing']).drop(['type'], axis=1).to_numpy().flatten())
     y_valid = list((y.loc[X['type'] == 'validation']).drop(['type'], axis=1).to_numpy().flatten())
-    how_much_data_overlap(y_train, y_test, y_valid)
+    # how_much_data_overlap(y_train, y_test, y_valid)
 
     X_train = dict.fit_transform(X_train.to_dict('records'))
     X_test = dict.transform(X_test.to_dict('records'))
     X_valid = dict.transform(X_valid.to_dict('records'))
 
-    tfidf = TfidfVectorizer()
+    # tfidf = TfidfVectorizer()
+    # print(len(X_train_nostop.to_numpy().flatten()))
+    # X_train_tfidf = tfidf.fit_transform(X_train_nostop.to_numpy().flatten())
+    # X_train_tfidf = tfidf.transform(X_test_nostop.to_numpy().flatten())
+    # X_train_tfidf = tfidf.transform(X_valid_nostop.to_numpy().flatten())
+
+    # print(X_train_tfidf.shape)
+
 
     train_model(X_train, y_train)
     clf = load_model()
     print(clf.score(X_valid, y_valid))
     print(clf.score(X_test, y_test))
 
-    predicts = clf.predict(X_valid)
-    for i in range(len(predicts)):
-        if (y_train.count(y_valid[i]) >= 1):
-            #if (y_valid[i] == predicts[i]):
-                print("Valid:",i)
-                print(f'Data says: {y_valid[i]}\nModel says: {predicts[i]}') #{X_valid[i]}\n
-                print(f'Was y_valid[i] in train? {y_valid[i] in y_train}. Count: {y_train.count(y_valid[i])}')
-
-    predicts = clf.predict(X_test)
-    for i in range(len(predicts)):
-        if (y_train.count(y_test[i]) >= 1):
-            #if (y_test[i] == predicts[i]):
-                print("Test:",i)
-                print(f'Data says: {y_test[i]}\nModel says: {predicts[i]}') #{X_valid[i]}\n
-                print(f'Was y_test[i] in train? {y_test[i] in y_train}. Count: {y_train.count(y_test[i])}')
+    # predicts = clf.predict(X_valid)
+    # for i in range(len(predicts)):
+    #     if (y_train.count(y_valid[i]) >= 1):
+    #         if (y_valid[i] != predicts[i]):
+    #             print("Valid:",i)
+    #             print(f'Data says:  {y_valid[i]}\nModel says: {predicts[i]}') #{X_valid[i]}\n
+    #             print(f'Was y_valid[i] in train? {y_valid[i] in y_train}. Count: {y_train.count(y_valid[i])}')
+ 
+    # predicts = clf.predict(X_test)
+    # for i in range(len(predicts)):
+    #     if (y_train.count(y_test[i]) >= 1):
+    #         if (y_test[i] != predicts[i]):
+    #             print("Test:",i)
+    #             print(f'Data says:  {y_test[i]}\nModel says: {predicts[i]}') #{X_valid[i]}\n
+    #             print(f'Was y_test[i] in train? {y_test[i] in y_train}. Count: {y_train.count(y_test[i])}')
     
 if __name__ == "__main__":
     main()
