@@ -1,48 +1,69 @@
-import csv
 import re
 import pickle
 import numpy as np
 import pandas as pd
-import sklearn
-from sklearn.neural_network import MLPClassifier
-from sklearn.feature_extraction import DictVectorizer
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.linear_model import LogisticRegression
-
+import urllib.request
+from collections import Counter
 import spacy
+import io
 import en_core_web_lg
 nlp = en_core_web_lg.load()
-stopwords = nlp.Defaults.stop_words
 
-def process_sent(df_part):
-    y = df_part.drop(['context'],axis=1)
-
-    df_part = clean_context(df_part, 'context', 'context_tidy')
-    df_part['redact_len'] = df_part['context'].apply(lambda x: count_redact(x))
-    # df_part['left'] = df_part['context'].apply(lambda x: count_redact(x))
-    # df_part['right'] = df_part['context'].apply(lambda x: count_redact(x))
+from sklearn.feature_extraction import DictVectorizer
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import recall_score, precision_score, f1_score
 
 
-    X = df_part.drop(['name', 'context'],axis=1)
+def process_sent(df_part,save_data):
+    print("Cleaning and sorting data...")
+    y = df_part.drop(['context','github'],axis=1)
+    y['name'] = y['name'].apply(lambda x: normalize_names(x))
+    df_part = clean_context(df_part)
+    df_part['no_stop'] =  df_part['context_tidy'].apply(lambda x: ' '.join([word for word in remove_stop(x)])) # removes stop words
+    df_part['count_list'] = df_part['no_stop'].apply(lambda x: count_word(x))
+    df_part['most_freqword1'] = df_part['count_list'].apply(lambda x: x[0][0])
+    df_part['freq_count1'] = df_part['count_list'].apply(lambda x: x[0][1])
+    df_part['most_freqword2'] = df_part['count_list'].apply(lambda x: x[1][0])
+    df_part['freq_count2'] = df_part['count_list'].apply(lambda x: x[1][1])
+    df_part = df_part.drop(['count_list'],axis=1)
+    df_part = pos_window(df_part)
+
+    X = df_part.drop(['name', 'context','context_tidy','pos_window','github'],axis=1)
+
+    if (save_data):
+        X.to_csv('resources/precleaned_X.tsv', sep="\t", index=False)
+        y.to_csv('resources/precleaned_y.tsv', sep="\t", index=False)
+    print("Data cleaned.")
     return X, y
 
-def clean_context(df, col, tidy_col):
-    df[tidy_col] = df[col].apply(lambda x: x.replace('\u2588','')) # removes redacted text
-    df[tidy_col] = df[tidy_col].apply(lambda x: ' '.join([word for word in x.split() if word not in (stopwords)])) # removes stop words
-    df[tidy_col] = df[tidy_col].apply(lambda x: re.sub('[^a-zA-Z\'\"]', ' ', x)) # removes punctuation
-    df[tidy_col] = df[tidy_col].apply(lambda x: re.sub('[\'\"]', '', x)) # removes punctuation
-    df[tidy_col] = df[tidy_col].apply(lambda x: re.sub(' +', ' ', x)) # removes extra spaces
+def normalize_names(name):
+    name = re.sub(r'\'s','', name)
+    names = name.split(" ")
 
-    return df
+    new_name = ""
+    for n in names:
+        n.capitalize()
+        new_name += n + " " 
 
-def tfidif_lambda(x):
-    tfIdf = TfidfVectorizer()
-    tokenizer = tfIdf.build_tokenizer()
-    vocab = tokenizer(x)
-    tv = tfIdf.fit_transform([x],[vocab])
+    new_name = new_name[:-1]
+    return new_name
 
-    return (tv)
+def remove_stop(str):
+    doc = nlp(str)
+    return [token.text for token in doc if (not token.is_stop and not token.is_punct)]
+
+def count_word(no_stop):
+    no_stop = re.sub('REDACTED', '', no_stop)
+    doc = nlp(no_stop)
+    words = [token.text for token in doc if (not token.is_stop and not token.is_punct and token.pos_ == "NOUN")]
+    if (len(words) == 0):
+        words = [token.text for token in doc if (not token.is_stop and not token.is_punct)]
+    word_freq = Counter(words)
+    common_words = word_freq.most_common(2)
+    while ((len(common_words) < 2)):
+        common_words.append(("NONE",0))
+
+    return(common_words)
 
 def count_redact(str):
     count = 0
@@ -52,59 +73,106 @@ def count_redact(str):
 
     return count
 
-def load_data(local):
-    data = []
+def clean_context(df):
+    df['redact_len'] = df['context'].apply(lambda x: count_redact(x))
+    df['context_tidy'] = df['context'].apply(lambda x: re.sub(r'(\w+)n\'t', r'\g<1>' + " not", x))
+    df['context_tidy'] = df['context_tidy'].apply(lambda x: re.sub('\u2588+','REDACTED',x)) # removes redacted text
+    df['context_tidy'] = df['context_tidy'].apply(lambda x: re.sub('[^a-zA-Z \' \"]', ' ', x)) # removes punctuation
+    df['context_tidy'] = df['context_tidy'].apply(lambda x: re.sub('[\'\"]', '', x)) # removes punctuation
+    df['context_tidy'] = df['context_tidy'].apply(lambda x: re.sub(' +', ' ', x)) # replaces extra spaces
 
-    if (local): 
-        # loads data from tsv and separates based on data type (train, test, valid)
+    return df
+
+def pos_window(df_part):
+    df_part['pos_window'] = df_part['context_tidy'].apply(lambda x: make_pos_window(x))    
+
+    df_part['pos-4'] = df_part['pos_window'].apply(lambda x: x[0])
+    df_part['pos-3'] = df_part['pos_window'].apply(lambda x: x[1])
+    df_part['pos-2'] = df_part['pos_window'].apply(lambda x: x[2])
+    df_part['pos-1'] = df_part['pos_window'].apply(lambda x: x[3])
+    df_part['pos+1'] = df_part['pos_window'].apply(lambda x: x[4])
+    df_part['pos+2'] = df_part['pos_window'].apply(lambda x: x[5])
+    df_part['pos+3'] = df_part['pos_window'].apply(lambda x: x[6])
+    df_part['pos+4'] = df_part['pos_window'].apply(lambda x: x[7])
+
+    return df_part
+
+def make_pos_window(context):
+    doc = nlp(context)
+    pos = ["NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE"]
+
+    redact_index = [x for x in range(len(doc)) if doc[x].text == "REDACTED"] # gets list of elements matching REDACTED
+    if (len(redact_index) > 0):
+        redact_index = redact_index[0] # gets index of redacted string
+    else:
+        return pos
+
+    if (redact_index - 4 > 0):
+        pos[0] = doc[redact_index-4].text+"_"+doc[redact_index-4].pos_
+
+    if (redact_index - 3 > 0):
+        pos[1] = doc[redact_index-3].text+"_"+doc[redact_index-3].pos_
+
+    if (redact_index - 2 > 0):
+        pos[2] = doc[redact_index-2].text+"_"+doc[redact_index-2].pos_
+
+    if (redact_index - 1 > 0):
+        pos[3] = doc[redact_index-1].text+"_"+doc[redact_index-1].pos_
+
+    if (redact_index + 1 < len(doc)):
+        pos[4] = doc[redact_index+1].text+"_"+doc[redact_index+1].pos_
+
+    if (redact_index + 2 < len(doc)):
+        pos[5] = doc[redact_index+2].text+"_"+doc[redact_index+2].pos_
+
+    if (redact_index + 3 < len(doc)):
+        pos[6] = doc[redact_index+3].text+"_"+doc[redact_index+3].pos_
+        
+    if (redact_index + 4 < len(doc)):
+        pos[7] = doc[redact_index+4].text+"_"+doc[redact_index+4].pos_
+
+    return pos
+
+def load_data():
+    # headers for request so not to spam website
+    headers = {}
+    headers['User-Agent'] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:97.0) Gecko/20100101 Firefox/97.0"
+    url = "https://raw.githubusercontent.com/cegme/cs5293sp22/main/unredactor.tsv"
+
+    # loads data from tsv and loads into pandas df with column names
+    try:
+    # download from github
+        print("Downloading data from github...")
+        data = urllib.request.urlopen(urllib.request.Request(url, headers=headers)).read()
+        data = io.StringIO(data.decode('utf-8'))
+        tsv_file = pd.read_csv(data, sep='\t+',engine='python', names = ['github', 'type', 'name', 'context'])
+
+    except:
+        # load local
+        print("Download failed, loading local data.")
         with open('resources/unredactor.tsv') as file:
-            tsv_file = csv.reader(file, delimiter="\t")
-            
-            # printing data line by line
-            for line in tsv_file:
-                data.append(line)
+            tsv_file = pd.read_csv(file, sep='\t+',engine='python', names = ['github', 'type', 'name', 'context'])
 
-    # turns lists of lists into pandas df
-    data_df = pd.DataFrame(data, columns = ['github', 'type', 'name', 'context'])
-    data_df = data_df.dropna()
+    data_df = tsv_file.dropna()
 
+    print("Data loaded.")
     return data_df
 
-def convert_to_dict(X, y):
-    X_train = (X.loc[X['type'] == 'training']).drop(['github', 'type'], axis=1)
-    y_train = list((y.loc[y['type'] == 'training']).drop(['github', 'type'], axis=1).to_numpy().flatten())
-    print(X_train)
-    print(y_train)
-
-    X_valid = (X.loc[y['type'] == 'validation']).drop(['github', 'type'], axis=1)
-    y_valid = list((y.loc[y['type'] == 'validation']).drop(['github', 'type'], axis=1).to_numpy().flatten())
-
-    X_test = (X.loc[X['type'] == 'testing']).drop(['github', 'type'], axis=1)
-    y_test = list((y.loc[y['type'] == 'testing']).drop(['github', 'type'], axis=1).to_numpy().flatten())
-
-    vectorizer = DictVectorizer(sparse=False)
-    X_train = X_train.to_dict(orient='records')
-    X_valid = X_valid.to_dict(orient='records')
-    X_test = X_test.to_dict(orient='records')
-
-    vectorizer.fit(X_train)
-    X_train = vectorizer.transform(X_train)
-    X_valid = vectorizer.transform(X_valid)
-    X_test = vectorizer.transform(X_test)
-
-    return (X_train, y_train), (X_valid, y_valid), (X_test, y_test)
-
-def train_model(X, y):
-    print("training")
-    clf = RandomForestClassifier()
+def train_model(X, y, save_model):
+    print("Training model...")
+    clf = RandomForestClassifier(random_state=0)
     clf.fit(X,y)
+    print("Model is trained.")
 
-    print("trained")
-    with open('model.pkl','wb') as f:
-        pickle.dump(clf,f)
+    if (save_model):
+        with open('model.pkl','wb') as f:
+            pickle.dump(clf,f)
+        print("model saved")
 
-    print(clf.score(X,y))
+    acc_train = clf.score(X,y)
+    print("Train Accuracy:", acc_train)
 
+    return clf
 
 def load_model():
     with open('model.pkl', 'rb') as f:
@@ -113,26 +181,61 @@ def load_model():
     return clf
 
 def main():
-    # load and convert data
-    use_local_file = True
-    data_df = load_data(use_local_file)
-    X, y = process_sent(data_df)
+    # boolean for use with peer review to avoid long runs if code takes a long time to run
+    use_saved_data = False # set THIS boolean to true IF locally cleaning data does not work due to memory/timeout during peer review
+
+    # booleans to use on my end to prepare saved data
+    save_data = True # set to true when run locally on my machine to presave some cleaned data for use
+    save_model = False # set to true to save model in pickled format
+
+    if (not use_saved_data):
+        # load and convert data
+        data_df = load_data()
+        X, y = process_sent(data_df, save_data)
+
+    else:
+        print("Loading presaved cleaned data...")
+        with open('resources/precleaned_X.tsv') as file:
+            X = pd.read_csv(file, sep='\t+',engine='python', names = ['type','redact_len','no_stop','most_freqword1','freq_count1',
+                                    'most_freqword2','freq_count2','pos-4','pos-3','pos-2','pos-1','pos+1','pos+2','pos+3','pos+4'])
+            #X = X.dropna()
+
+        with open('resources/precleaned_y.tsv') as file:
+            y = pd.read_csv(file, sep='\t+',engine='python', names = ['type', 'name'])
+            #y = X.dropna()
+        
+        print("Data loaded.")
+
+    dict = DictVectorizer(sparse=False)
+    X_train = (X.loc[X['type'] == 'training']).drop(['type'], axis=1)
+    print(X_train)
+    X_test  = (X.loc[X['type'] == 'testing']).drop(['type'], axis=1)
+    X_valid = (X.loc[X['type'] == 'validation']).drop(['type'], axis=1)
+
+    y_train = list((y.loc[X['type'] == 'training']).drop(['type'], axis=1).to_numpy().flatten())
+    y_test  = list((y.loc[X['type'] == 'testing']).drop(['type'], axis=1).to_numpy().flatten())
+    y_valid = list((y.loc[X['type'] == 'validation']).drop(['type'], axis=1).to_numpy().flatten())
+
+    X_train = dict.fit_transform(X_train.to_dict('records'))
+    X_test = dict.transform(X_test.to_dict('records'))
+    X_valid = dict.transform(X_valid.to_dict('records'))
+
+    clf = train_model(X_train, y_train, save_model)
+
+    pred_valid = clf.predict(X_valid)
+    pred_test = clf.predict(X_test)
+
+    prec_valid = round(precision_score(y_valid, pred_valid, average="weighted",zero_division=0),5)
+    prec_test = round(precision_score(y_test, pred_test, average="weighted",zero_division=0),5)
+
+    recall_valid = round(recall_score(y_valid, pred_valid, average="weighted",zero_division=0),5)
+    recall_test = round(recall_score(y_test, pred_test, average="weighted",zero_division=0),5)
+
+    f1_valid = round(f1_score(y_valid, pred_valid, average="weighted",zero_division=0),5)
+    f1_test = round(f1_score(y_test, pred_test, average="weighted",zero_division=0),5)
+
+    print(f'Validation Dataset:\n\tNumber of datapoints: {len(y_valid)}\n\tPrec: {prec_valid}\n\tRecall: {recall_valid}\n\tF1: {f1_valid}')
+    print(f'Testing Dataset:\n\tNumber of datapoints: {len(y_test)}\n\tPrec: {prec_test}\n\tRecall: {recall_test}\n\tF1: {f1_test}')
     
-    (X_train, y_train), (X_valid, y_valid), (X_test, y_test) = convert_to_dict(X, y)
-
-    train_model(X_train, y_train)
-
-    clf = load_model()
-    print(clf.score(X_valid, y_valid))
-    print(clf.score(X_test, y_test))
-
-    # predicts = clf.predict(X_valid)
-    # for i in range(len(predicts)):
-    #     print("Test:",i)
-    #     print(f'{X_valid[i]}\n{y_valid[i]}\n{predicts[i]}')
-    #     print(f'Was y_test[i] in train? {y_valid[i] in y_train}')
-
-
-
 if __name__ == "__main__":
     main()
