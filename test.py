@@ -19,6 +19,7 @@ stopwords = nlp.Defaults.stop_words
 
 def process_sent(df_part):
     y = df_part.drop(['context','github'],axis=1)
+    y['name'] = y['name'].apply(lambda x: normalize_names(x))
 
     df_part = clean_context(df_part)
     df_part['no_stop'] =  df_part['context_tidy'].apply(lambda x: ' '.join([word for word in x.split() if word not in (stopwords)])) # removes stop words
@@ -35,6 +36,19 @@ def process_sent(df_part):
 
     X = df_part.drop(['name', 'context','context_tidy','pos_window','no_stop','github'],axis=1)
     return X, y, X_nostop
+
+def normalize_names(name):
+    name = re.sub(r'\'s','', name)
+    names = name.split(" ")
+
+    new_name = ""
+    for n in names:
+        n.capitalize()
+        new_name += n + " " 
+
+    new_name = new_name[:-1]
+
+    return new_name
 
 def clean_context(df):
     df['redact_len'] = df['context'].apply(lambda x: count_redact(x))
@@ -55,10 +69,6 @@ def count_redact(str):
     return count
 
 def make_pos_window(context):
-    # context = re.sub(r'(\w+)n\'t', r'\g<1>' + " not", context)
-    # context = re.sub(r'\u2588+', "REDACTED", context)
-    # context = re.sub(r'[^a-zA-Z ]', "", context)
-
     doc = nlp(context)
     pos = ["NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL"]
 
@@ -88,30 +98,19 @@ def make_pos_window(context):
     return pos
 
 def load_data(local):
-    data = []
-
     if (local): 
         # loads data from tsv and separates based on data type (train, test, valid)
         with open('resources/unredactor.tsv') as file:
-            tsv_file = csv.reader(file, delimiter='\t+')
+            tsv_file = pd.read_csv(file, sep='\t+',engine='python', names = ['github', 'type', 'name', 'context'])
             
-            # printing data line by line
-            for line in tsv_file:
-                data.append(line)
-
-    # turns lists of lists into pandas df
-    data_df = pd.DataFrame(data, columns = ['github', 'type', 'name', 'context'])
-    data_df = data_df.dropna()
-
+    data_df = tsv_file.dropna()
     return data_df
 
 
 def train_model(X, y):
     print("training")
     clf = RandomForestClassifier(random_state=0)
-    #clf = MLPClassifier(random_state=1, max_iter=500)
     clf.fit(X,y)
-
     print("trained")
 
     with open('model.pkl','wb') as f:
@@ -212,21 +211,21 @@ def main():
     print(clf.score(X_valid, y_valid))
     print(clf.score(X_test, y_test))
 
-    # predicts = clf.predict(X_valid)
-    # for i in range(len(predicts)):
-    #     if (y_train.count(y_valid[i]) >= 1):
-    #         if (y_valid[i] != predicts[i]):
-    #             print("Valid:",i)
-    #             print(f'Data says:  {y_valid[i]}\nModel says: {predicts[i]}') #{X_valid[i]}\n
-    #             print(f'Was y_valid[i] in train? {y_valid[i] in y_train}. Count: {y_train.count(y_valid[i])}')
+    predicts = clf.predict(X_valid)
+    for i in range(len(predicts)):
+        if (y_train.count(y_valid[i]) >= 1):
+            #if (y_valid[i] != predicts[i]):
+                print("Valid:",i)
+                print(f'Data says:  {y_valid[i]}\nModel says: {predicts[i]}') #{X_valid[i]}\n
+                print(f'Was y_valid[i] in train? {y_valid[i] in y_train}. Count: {y_train.count(y_valid[i])}')
  
-    # predicts = clf.predict(X_test)
-    # for i in range(len(predicts)):
-    #     if (y_train.count(y_test[i]) >= 1):
-    #         if (y_test[i] != predicts[i]):
-    #             print("Test:",i)
-    #             print(f'Data says:  {y_test[i]}\nModel says: {predicts[i]}') #{X_valid[i]}\n
-    #             print(f'Was y_test[i] in train? {y_test[i] in y_train}. Count: {y_train.count(y_test[i])}')
+    predicts = clf.predict(X_test)
+    for i in range(len(predicts)):
+        if (y_train.count(y_test[i]) >= 1):
+            #if (y_test[i] != predicts[i]):
+                print("Test:",i)
+                print(f'Data says:  {y_test[i]}\nModel says: {predicts[i]}') #{X_valid[i]}\n
+                print(f'Was y_test[i] in train? {y_test[i] in y_train}. Count: {y_train.count(y_test[i])}')
     
 if __name__ == "__main__":
     main()
