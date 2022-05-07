@@ -69,7 +69,7 @@ def count_list(df_part):
     return df_part
 
 def count_word(no_stop):
-    """Function to count thr two most frequent words and return to be applied to dataframe."""
+    """Function to count the two most frequent words and return to be applied to dataframe."""
     # removes redacted filler from string
     no_stop = re.sub(' +', ' ', no_stop)
     no_stop = re.sub('REDACTED', '', no_stop)

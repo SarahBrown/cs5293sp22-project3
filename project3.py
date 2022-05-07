@@ -84,6 +84,26 @@ def make_dict(X, y):
 
     return (X_train, y_train), (X_valid, y_valid), (X_test, y_test)
 
+def train_model(X, y, save_model):
+    """Function to train and return a model to predict redacted names."""
+    print("Training model...")
+    # creates and trains a random forest classifier
+    clf = RandomForestClassifier(random_state=0)
+    clf.fit(X,y)
+    print("Model is trained.")
+
+    # saves model if boolean is set to true
+    if (save_model):
+        with open('model.pkl','wb') as f:
+            pickle.dump(clf,f)
+        print("model saved")
+
+    # calculates and prints training accuracy
+    acc_train = clf.score(X,y)
+    print("Train Accuracy:", acc_train)
+
+    return clf
+
 def load_model():
     """Function to load and return a stored model."""
     with open('model.pkl', 'rb') as f:
@@ -105,30 +125,10 @@ def score_model(y_valid, y_test, pred_valid, pred_test):
 
     return (prec_valid, prec_test), (recall_valid, recall_test), (f1_valid, f1_test)
 
-def train_model(X, y, save_model):
-    """Function to train and return a model to predict redacted names."""
-    print("Training model...")
-    # creates and trains a random forest classifier
-    clf = RandomForestClassifier(random_state=0)
-    clf.fit(X,y)
-    print("Model is trained.")
-
-    # saves model if boolean is set to true
-    if (save_model):
-        with open('model.pkl','wb') as f:
-            pickle.dump(clf,f)
-        print("model saved")
-
-    # calculates and prints training accuracy
-    acc_train = clf.score(X,y)
-    print("Train Accuracy:", acc_train)
-
-    return clf
-
 def main():
     """Main function to process training data and to predict validation and testing data."""
     # boolean for use with peer review to avoid long runs if code takes a long time to run
-    use_saved_data = True # set THIS BOOLEAN to true IF locally cleaning data does not work due to memory/timeout during peer review
+    use_saved_data = False # set THIS BOOLEAN to true IF locally cleaning data does not work due to memory/timeout during peer review
 
     # booleans to set when run locally on my machine to presave cleaned data for future use
     # do NOT change these
