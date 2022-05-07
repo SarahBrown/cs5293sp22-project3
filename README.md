@@ -20,6 +20,12 @@ use_saved_data on **line 131** of project3.py should be set to True if there are
 
 If you wish to view the model's predictions, change **print_pred** = False to True on **line 155** project3.py. This was set to False to avoid excess print statements.
 
+## Video Demo
+Below is a short video demo of the project code and the project pytests. This video is sped up to decrease file size.
+
+https://user-images.githubusercontent.com/43789373/167271970-8471cc40-b533-4e42-b4a0-c36203e0b595.mp4
+
+
 # Web or External Libraries
 For this project I used several packages from the standard library and some external libraries. These included argparse, counter, glob, io, import, pickle, random, re, and urllib.request. In addition, the following external libraries were used pandas, spacy (and specifically en_core_web_lg), and sklearn.
 
