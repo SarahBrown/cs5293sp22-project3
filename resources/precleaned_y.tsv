@@ -1,5 +1,4 @@
-type	name
-training	ashton kutcher
+training	Ashton Kutcher
 training	Ashton Kutcher
 training	Noonan
 training	Picasso
@@ -12,10 +11,10 @@ training	Sita
 training	Ms Mehta
 training	Ms Mehta
 training	Radha
-training	A.R. Rahman
+training	A.r. Rahman
 training	Ashton Kutcher
 training	Deepa Mehta
-training	A.R. Rahman
+training	A.r. Rahman
 training	Deepa Mehta
 training	Deepa Mehta
 training	Camilla
@@ -66,15 +65,15 @@ validation	Park Chan-wook
 validation	Bakjwi
 validation	Bakjwi
 validation	Dracula
-validation	aesop
+validation	Aesop
 validation	Chan-wook Park
 validation	Chan-wook Park
 validation	Hyeon
 validation	Hyeon
 validation	Hyeon
-validation	Park Chan-Wook
+validation	Park Chan-wook
 validation	Park
-validation	Chan-Wook
+validation	Chan-wook
 validation	Park Chun-wook
 validation	Chan-wook Park
 validation	Clancy Brown
@@ -83,7 +82,7 @@ validation	Chan-wook Park
 testing	Kevin Costner
 testing	Costner
 testing	Leonard Maltin
-testing	Bob McKimson
+testing	Bob Mckimson
 testing	Maria Von Trapp
 testing	Julie
 testing	Julie Andrews
@@ -98,7 +97,7 @@ training	Patricia Wymer
 training	Rupert Everett
 training	Alisan Porter
 training	Eddie Murphy
-training	Olivia DeHavilland
+training	Olivia Dehavilland
 training	Sofia Loren
 training	John Holmes
 training	James Cox
@@ -173,7 +172,7 @@ validation	Luise Rainer
 testing	Das Boot
 testing	Steven Dorff
 testing	Michael Ballhaus
-testing	Jean-Marie Lamour
+testing	Jean-marie Lamour
 testing	Shane Black
 testing	Colin Firth
 testing	Christine Scott Thomas
@@ -267,7 +266,7 @@ testing	Clive Barker
 testing	Danny Elfman
 testing	Doug Bradley
 testing	David Cronenberg
-testing	Vincent D'Onofrio
+testing	Vincent D'onofrio
 testing	Shemp
 testing	Curly
 training	Brokeback Mountain
@@ -386,7 +385,7 @@ training	Jack Noah
 training	Alfonse Sims
 training	Millard Mitchell
 training	Henry Brown
-training	Stephen McNally
+training	Stephen Mcnally
 training	Wyatt Earp
 training	Will Geer
 training	Lin
@@ -398,7 +397,7 @@ training	Robert Richards
 training	Steve Miller
 training	Charles Drake
 training	Young Bull
-training	John McIntyre
+training	John Mcintyre
 training	Dutch Henry
 training	Steve Brodie
 training	James Millican
@@ -420,7 +419,7 @@ validation	Curtis
 validation	Lin Macadam
 validation	James Stewart
 validation	Henry Brown
-validation	Stephen McNally
+validation	Stephen Mcnally
 validation	Wyat Earp
 validation	Jack Arnold
 validation	Clint Eastwood
@@ -434,7 +433,7 @@ validation	Anthony Mann
 validation	James Stewart
 validation	Stewart
 validation	Winchester
-validation	John McIntire
+validation	John Mcintire
 validation	Dan Duryea
 validation	Millard Mitchell
 validation	Shelly Winters
@@ -460,6 +459,7 @@ testing	Rik Mayall
 testing	Rudy Ray Moore
 testing	Spalding Gray
 testing	Willie Green
+training	Barry Levinson
 training	Ben Stiller
 training	Bettina Hirsch
 training	Bill
@@ -485,7 +485,7 @@ training	Irvin Kershner
 training	Jack Black
 training	Jayne Mansfield
 training	Jim Brown
-training	Jimmy McHugh
+training	Jimmy Mchugh
 training	John Hughes
 training	Johnny Mercer
 training	Jonathan Scarfe
@@ -499,7 +499,7 @@ training	Mari Honjo
 training	Marjorie Main
 training	Mitch
 training	Mitch
-training	Nadine Van der Velde
+training	Nadine Van Der Velde
 training	Nielson
 training	Paul
 training	Paul
@@ -507,7 +507,7 @@ training	Simon
 training	Simon Watterman
 training	Trey
 training	Trey Sellars
-training	Veer-Zaara
+training	Veer-zaara
 training	Willie Green
 validation	Amy
 validation	Arthur
@@ -515,7 +515,7 @@ validation	Atwill
 validation	Blade
 validation	Charles Higham
 validation	Chris Rock
-validation	CONAN DOYLE
+validation	Conan Doyle
 validation	Dolph Lundgren
 validation	Ed Norton
 validation	Eddie
@@ -535,7 +535,7 @@ validation	Laura Linney
 validation	Neil Labute
 validation	Nick Hammond
 validation	Peter Parker
-validation	Seth McFarlane
+validation	Seth Mcfarlane
 validation	Stephen Dorff
 validation	Tobey Macguire
 validation	Willie Green
@@ -555,7 +555,7 @@ training	John Cleese
 training	Jess
 training	Daryl Hannah
 training	Bronson
-training	Tom ValcoJames Gandolfiniis
+training	Tom Valcojames Gandolfiniis
 training	Joanna Pacula
 training	Oscar
 training	Fifi
@@ -577,7 +577,7 @@ training	Jeff
 training	Antwone Fisher
 training	Max
 training	Sandra Bullock
-training	Peter O'Toole
+training	Peter O'toole
 training	Ridley Scott
 training	Lindy
 training	Buck Henry
@@ -597,7 +597,7 @@ validation	Libby
 validation	John Savage
 validation	Anita Strindberg
 validation	Dani Levy
-validation	Mick McCleery
+validation	Mick Mccleery
 validation	Murphy
 validation	Burakov
 validation	Jane
@@ -611,7 +611,7 @@ validation	Stephen King
 validation	Mike Nicholas Closer
 validation	Jennifer Lopez
 validation	Meh
-validation	max
+validation	Max
 validation	Matt
 validation	Michelle Pieffer
 validation	Ryan
@@ -650,7 +650,7 @@ training	Graves
 training	Tex Avery
 training	Droopy
 training	Tex Avery
-training	McPoodle
+training	Mcpoodle
 training	Simon Templar
 training	Paul Guilfoyle
 training	George Sanders
@@ -663,11 +663,11 @@ training	Fernack
 training	Kristine
 training	Ronald Reagan
 training	Monica Lewinski
-training	Kristine DeBell
+training	Kristine Debell
 training	Steven Spielberg
 training	Kristine
 training	Richard Prior
-training	Sacha barren Cohen
+training	Sacha Barren Cohen
 training	Ali
 training	Ali G
 training	Sacha Baron Cohen
@@ -678,17 +678,17 @@ training	Texas Chainsaw Massacre
 training	Jeff Lieberman
 training	Jeff Lieberman
 training	Ken Stott
-training	DCI Red Metcalfe
+training	Dci Red Metcalfe
 validation	Messiah
 validation	George Hilton
 validation	Felipe Martinez
 validation	Francois Perrin
-validation	LUC BESSON
+validation	Luc Besson
 validation	Richard Gere
 validation	Diane Lane
 validation	Chris Stokes
 validation	Tim Thomerson
-validation	Jekyll and Hyde
+validation	Jekyll And Hyde
 validation	Mel Brookes
 validation	Chaplin
 validation	Dutchess
@@ -700,13 +700,13 @@ validation	Jamie Cromwell
 validation	Jerry Lundergaard
 validation	Dennis Quaid
 validation	Dennis Quaid
-validation	Vincent D'Onofrio
+validation	Vincent D'onofrio
 validation	Murphy
-validation	DeNiro
+validation	Deniro
 validation	Rene Russo
 validation	Robert De Niro
 validation	First Mate
-validation	Walker and Luke
+validation	Walker And Luke
 validation	John Corbett
 validation	John Corbett
 testing	Liv Ullmann
@@ -850,7 +850,7 @@ training	Jenny Latour
 training	Jenny
 training	Jouvet
 training	Miss Dora Monnier
-training	Ally McBeal
+training	Ally Mcbeal
 training	Rebecca Immanuel
 training	Isabel Tuengerthal
 training	Jim Carrey
@@ -936,7 +936,7 @@ training	Brit
 training	Glenn Close
 training	Mary Moronov
 training	Agustí Villaronga
-training	shirley verel
+training	Shirley Verel
 training	Jim Henson Productions
 training	Will Smith
 training	Kusturica
@@ -944,37 +944,37 @@ training	Brosnan
 training	Brad Pitt
 training	Carl Brashear
 training	Daniel
-training	Robert DeNiro
+training	Robert Deniro
 training	Edison Chen
 training	Molly Ringwald
 training	Steve Queen
-training	JJ Abrams
+training	Jj Abrams
 validation	Michael Keaton
 validation	Paco
 validation	Stephanie
 validation	Ted Turner
-validation	jonny
-validation	jonny
-validation	jonny
+validation	Jonny
+validation	Jonny
+validation	Jonny
 validation	Russell Velazquez
 validation	Scarman
-validation	RAMO
+validation	Ramo
 validation	Antonioni
 validation	Jim Carrey
 validation	Hector
 validation	Arthur Askey
 validation	Madhavi Sharma
-validation	Vander-Geek
+validation	Vander-geek
 validation	Darling Nicki
 validation	Claire Carter
 validation	Gallien
 validation	Homer Hickam
-validation	Dr Jacques COULARDEAU
+validation	Dr Jacques Coulardeau
 validation	Werner Henze Simon
 validation	Crowe
 validation	Charlton Heston
 validation	Jenna Jameson
-validation	henson
+validation	Henson
 validation	Ben Chaplin
 validation	Sean Young
 validation	Brown
@@ -984,7 +984,7 @@ testing	Lai
 testing	Jalal Merhi
 testing	Lugosi
 testing	Paul Gross
-testing	Arthur MacArthur
+testing	Arthur Macarthur
 testing	Wilma
 testing	Temuera
 testing	Andrew Gurland
@@ -1043,7 +1043,7 @@ training	Dane Cook
 validation	Shirley Knight
 validation	James Caan
 validation	Ashton Kutcher
-validation	Jacqueline McKenzie
+validation	Jacqueline Mckenzie
 validation	John Lynch
 validation	Terry Gilliam
 validation	Bruce Willis
@@ -1060,12 +1060,12 @@ validation	George Sanders
 validation	Oliver Reed
 validation	Ron Moody
 validation	Rosario Dawson
-validation	Doug McClure
+validation	Doug Mcclure
 validation	Ben
 validation	Ellen
 validation	Louis
 validation	Harry Secombe
-validation	Rose McGowan
+validation	Rose Mcgowan
 validation	Mary Pickford
 validation	Adolph Zukor
 validation	Lloyd Hughes
@@ -1110,7 +1110,7 @@ training	Theodore Rex
 training	Chamberlain
 training	Richard Widmark
 training	Michael Keaton
-training	spacek  
+training	Spacek  
 training	Danielle Petty
 training	Jack Nicholson
 training	Jet Li
@@ -1135,12 +1135,12 @@ training	Dianne Keaton
 validation	Johnson
 validation	Lilith
 validation	Maddy
-validation	JESSICA
+validation	Jessica
 validation	John Saxon
-validation	Eagles Donovan McNabb
+validation	Eagles Donovan Mcnabb
 validation	Meryl Streep
 validation	J. Varhola
-validation	MAGNOLIA
+validation	Magnolia
 validation	George W. Bush
 validation	Andy Fastow
 validation	Dana Andrews
@@ -1156,7 +1156,7 @@ validation	Anita Briem
 validation	Vampire Assassin
 validation	Helen Mirren
 validation	Johnson
-validation	anthony sabato jr
+validation	Anthony Sabato Jr
 validation	Hanks
 validation	Noble Willingham
 validation	Pam Grier
@@ -1188,7 +1188,7 @@ training	Lex Barker
 training	Tarzan
 training	Anthony Wong
 training	Yuen Woo Ping
-training	Beverly D'Angelo
+training	Beverly D'angelo
 training	Jerry Orbach
 training	Jeff Goldblum
 training	Cristina Raines
@@ -1256,7 +1256,10 @@ testing	Safran Foer
 testing	James Frain
 testing	Ian Hart
 testing	Mervyn Leroy
+testing	Henry Thomas
+testing	Jean Simmons
 testing	Capone
+testing	Julia Stiles
 testing	Edward Woodward
 testing	Michael Meyers
 testing	Kevin Bacon
@@ -1272,7 +1275,7 @@ testing	Natalie Portman
 validation	John Kielty
 validation	Chipmunks
 validation	Paul Henreid
-validation	SHIRLEY VALENTINE
+validation	Shirley Valentine
 validation	Zoey
 validation	Henry Brandon
 validation	Clifton Webb
@@ -1301,7 +1304,7 @@ validation	Tom Cruise
 validation	Buzz Aldrin
 training	Wanda
 training	Michael Dorn
-training	Gail O'Grady
+training	Gail O'grady
 training	Emile Zola
 training	Christopher Lee
 training	Uma Thurman
@@ -1311,7 +1314,7 @@ training	Mckenna
 training	David Self
 training	Sicheritz
 training	Zhang Ziyi
-training	patrick rea
+training	Patrick Rea
 training	Robin Williams
 training	Luke Perry
 training	Amy Irving
@@ -1329,7 +1332,7 @@ training	John Williams
 training	Scarface Anyways
 training	Meryl
 training	Mia
-training	oliver
+training	Oliver
 training	Simon Pegg
 training	Conan
 training	Jennie Livingston
@@ -1338,7 +1341,7 @@ training	Shrek
 training	Zombie
 training	Diane
 training	Eddie
-training	Dylan O'Leary
+training	Dylan O'leary
 training	Corbin Bernsen
 training	Bozz
 training	Gena Rowland
@@ -1388,7 +1391,7 @@ training	Rainbow Brite
 training	Nicolas Cage
 training	Christopher Eccelson
 training	Van Wilder
-training	Chan-Wook Park
+training	Chan-wook Park
 training	Jalal Merhi
 training	Werner Pochath
 training	Lamberto Bava
@@ -1401,7 +1404,7 @@ training	Werner Pochath
 training	Osa Massen
 validation	Joe Dallesandro
 validation	Oliver Stone
-validation	Ben stiller
+validation	Ben Stiller
 validation	Mike Meyers
 validation	Melody Thomas Scott
 validation	Andrei Tarkovsky
@@ -1417,7 +1420,7 @@ validation	Jason Lee
 validation	Chad Lowe
 validation	Julian Hernandez
 validation	Burt Reynolds
-validation	John Rys-Daves
+validation	John Rys-daves
 validation	Drew Barrymore
 validation	Paul Verhoeven
 validation	Ralph Fiennes
@@ -1426,7 +1429,7 @@ validation	Peter Jackson
 validation	Matthew Modine
 validation	Sean Pertwee
 validation	Rosanna Arquette
-validation	bob
+validation	Bob
 validation	Colm Meaney
 testing	Eytan Fox
 testing	Aragorn
@@ -1483,14 +1486,14 @@ training	Bob Dylan
 training	Scott Bakula
 training	Richard Widmark
 training	Bogdanavich
-training	christopher walken
+training	Christopher Walken
 training	Herbert Marshall
 training	Leonard Maltin
 training	Jessica Simpson
 training	Rod Serling
 training	Suess
 validation	Michael Moriarty
-validation	Kelly LeBrock
+validation	Kelly Lebrock
 validation	Tom Hank
 validation	William H. Macy
 validation	Steve Purcell
@@ -1517,7 +1520,7 @@ validation	Ann Biller
 validation	Quentin Tarantino
 validation	Bruce Willis
 validation	Anthony Quinn
-validation	mcDonald
+validation	Mcdonald
 validation	Julia Roberts
 testing	Cameron Diaz
 testing	Lisa Niemi
@@ -1542,10 +1545,10 @@ testing	Christopher Lee
 validation	Christopher
 validation	Harry Potter
 validation	Hillary Duff
-validation	Madeline L'Engle
+validation	Madeline L'engle
 validation	Peter Jackson
-validation	L'Engle
-validation	Madeleine L'Engle
+validation	L'engle
+validation	Madeleine L'engle
 validation	Madeleine Engle
 validation	Susan George
 validation	Susan George
@@ -1582,7 +1585,7 @@ training	Cinderella
 training	Sam
 training	Armstrong
 training	Pearl Bailey
-training	any1
+training	Any1
 training	Milo
 training	Getrumte Snden'
 training	Lang
@@ -1603,7 +1606,7 @@ training	Jodorowsky
 training	Jackie Mason
 training	Paul Reiser
 training	Lancelo
-training	Jim McBride
+training	Jim Mcbride
 training	Isabelle Hupert
 training	David Charvet
 training	Jack Nicholson
@@ -1616,13 +1619,13 @@ training	Hector Perez
 training	Williams
 training	Shakespeare
 training	Jack Torrence
-training	a Lucas Buck
+training	A Lucas Buck
 training	Andy Garcia
 training	Christy
 training	Mark Piznarski
 training	Josh Hamilton
 training	Julia Stiles
-training	Jerry O'Connell
+training	Jerry O'connell
 training	Jeremy Sisto
 training	Jordana Brewster
 training	Leonard Roberts
@@ -1654,8 +1657,8 @@ training	Melissa
 training	Caroline Rhea
 training	Hilda
 training	Morgan
-training	Nickeleoden UK
-training	Mellissa Joan-Hart
+training	Nickeleoden Uk
+training	Mellissa Joan-hart
 training	Clarrissa Explains All
 training	Sabrina
 training	Lena Olin
@@ -1732,8 +1735,8 @@ training	Craven
 training	Eyes
 training	Todd Schaefer
 training	Kenny Johnson
-training	Kevin McParland
-training	Jennifer McAllister
+training	Kevin Mcparland
+training	Jennifer Mcallister
 training	Jack
 training	Walter Matthau
 training	Lemmon
@@ -1800,7 +1803,7 @@ testing	Adam Beach
 testing	Tony Hillerman
 testing	Tony
 testing	Peter Falk
-testing	milly dowler
+testing	Milly Dowler
 testing	Ben Mezrich
 testing	Schlesinger
 testing	Shirley
@@ -1810,12 +1813,12 @@ testing	Baio
 testing	Erika Eleniak
 testing	Anton Newcombe
 training	Kelsey
-training	KIng Boxer
+training	King Boxer
 training	Kenny Doughty
 training	Paco
 training	Larry Miller
 training	Madsen
-training	RAMO
+training	Ramo
 training	Igor
 training	Wally Cox
 training	Bette Davis
@@ -1827,15 +1830,15 @@ training	Shakespear
 training	Danny
 training	Steven Spielberg
 training	Antonio Sabato Jr
-training	darby
+training	Darby
 training	Gigli
 training	Eddie
-training	Dylan O'Leary
+training	Dylan O'leary
 training	Corbin Bernsen
 training	Gena Rowland
 training	Werner Henze Simon
 training	Jimmy Cliff
-training	henson
+training	Henson
 training	Charlton Heston
 training	Majkowski
 training	Mary Poppins
@@ -1856,7 +1859,7 @@ training	Gary Lewis
 training	Brad Pit
 training	Michael Jackson
 training	Columbo
-training	patrick rea
+training	Patrick Rea
 training	Kimi
 training	Alec Guinness
 validation	Arnold
@@ -1876,7 +1879,7 @@ validation	Gretchen Moll
 validation	Russell
 validation	Lucille Ball
 validation	Simon
-validation	henson
+validation	Henson
 validation	Alec Guinness
 validation	Sabrina
 validation	Angelina Jolie
@@ -1884,11 +1887,15 @@ validation	Nigel Marvin
 validation	Goldberg
 validation	Sammo Hung
 validation	Walter Pidgeon
-validation	Robert DeNiro
+validation	Robert Deniro
 validation	Newhart
-validation	jay walker
+validation	Jay Walker
 validation	Paul Keenan
-validation	Andie MacDowell
+validation	Andie Macdowell
+training	Annemarie Schwarzenbach
+training	Jeanette Hain
+validation	Mendez
+testing	Nikolai Cherkasov
 training	Landlord Edgar Kennedy
 training	Jennifer Jason Leigh
 training	Tom Courtenay
@@ -1990,7 +1997,7 @@ training	Julian Sands
 training	Alexandra
 training	Donald
 training	Peter Lorre
-training	tommy lee jones
+training	Tommy Lee Jones
 training	Nicolas Cage
 training	Michael Madsen
 training	Angela Bassett'
@@ -2001,10 +2008,10 @@ training	Ajay
 training	Lorna Doone
 training	Peter Sellers
 training	Yaphet Kotto
-training	Malcom McDowall
+training	Malcom Mcdowall
 training	Dutta
 training	Ben Mezrich
-training	Andy McNabb
+training	Andy Mcnabb
 training	Rosanna Arquette
 training	David Bowie
 training	Caridad
@@ -2023,7 +2030,7 @@ training	Cody
 training	John Waters
 training	Grisham
 training	Henry Silva
-training	JonBenet Ramsey
+training	Jonbenet Ramsey
 training	Carlos Mencia
 training	Brenda Blethyn
 training	Brendan Fraser`s
@@ -2042,7 +2049,7 @@ validation	Patterson
 validation	Kusturica
 validation	Sean Connery
 validation	Melville
-validation	chris kattan
+validation	Chris Kattan
 validation	Angelina Jolie
 validation	William Shakespeare
 validation	Jeffrey Combs
@@ -2060,7 +2067,7 @@ validation	Julie Andrews
 validation	Peter Dalle
 validation	Ali
 testing	Barbara Payton
-testing	Park Chan-Wook
+testing	Park Chan-wook
 testing	Luigi Bazzoni
 testing	Joe
 testing	Sabrina
@@ -2070,9 +2077,9 @@ testing	Traffik
 testing	John Leguizamo
 testing	Charlie
 training	Alison Elliott
-training	Vincent D'Onofrio
+training	Vincent D'onofrio
 training	Jennifer Lopez'
-training	D'Onofrio
+training	D'onofrio
 training	Andrew Davis
 training	Shia Lebouf
 training	Chris Gunn
@@ -2086,11 +2093,11 @@ training	John Wayne
 training	Marc Singer
 training	Bill Murray
 training	Murray
-training	Matthew McConaughey
+training	Matthew Mcconaughey
 training	Janeane Garofalo
 training	Linda Fiorentino
-training	McConaughey
-training	M.J. Fox
+training	Mcconaughey
+training	M.j. Fox
 training	Hugh Laurie
 training	Mark Wahlberg
 training	Jennifer Aniston
@@ -2109,7 +2116,7 @@ training	Jennifer Sky
 training	Gina Torres
 training	Victoria Pratt
 training	Danielle Cormack
-training	Mathew McConaughey
+training	Mathew Mcconaughey
 training	Kate Hudson
 training	Orson Welles
 training	Claudette Colbert
@@ -2121,7 +2128,7 @@ training	Jackie Chan
 training	Billy Crystal
 validation	Richard Rossi
 validation	Gruner
-validation	Danny DeVito
+validation	Danny Devito
 validation	Paul Rudd
 validation	Paul Rudd
 validation	Bree Turner
@@ -2154,7 +2161,7 @@ testing	Jim Carrey
 testing	John Wayne
 testing	Danny Devito
 testing	Jack Nicholson
-testing	Robert DeNiro
+testing	Robert Deniro
 testing	Billy Crystal
 testing	Hugh Jackman
 testing	Guy Ritchie
@@ -2186,7 +2193,7 @@ training	Paltrow
 training	John Lithgow
 training	Brad Pitt
 training	Brendan Frazer
-training	TOM BOSLEY
+training	Tom Bosley
 training	Martin Luther King
 training	Laurence Olivier
 training	Ivan Trojan
@@ -2200,7 +2207,7 @@ training	Teresa Pavlinek
 training	Wu Ma
 training	Bryan Adams
 training	Stacy Peralta
-training	'Smita Patil'
+training	'smita Patil'
 training	Ruth Gordon
 training	Robert Drivas
 training	Judd Nelson
@@ -2219,7 +2226,7 @@ validation	Jim Larson
 validation	Cary Grant
 validation	Michael Redgrave
 validation	Gena Rowland
-validation	madhur
+validation	Madhur
 validation	Eddie
 validation	Meryl Streep
 validation	Michelle Rodriguez
@@ -2236,17 +2243,17 @@ validation	Halfdan Hussey
 validation	Paxton
 validation	Abel Ferrara
 validation	Don Peake
-validation	CJ Stacy
+validation	Cj Stacy
 validation	Tom Selleck
 validation	Dunk Ernest
 testing	Lon Chaney Jr
-testing	jack
+testing	Jack
 testing	David Lynch
 testing	Leo Gorcey
 testing	Mr Gastineau
 testing	Darwin
 testing	Richard Kelly
-testing	Leni RiefenStahl
+testing	Leni Riefenstahl
 testing	Simpson
 testing	Roslin
 training	Holly
@@ -2330,7 +2337,7 @@ validation	Sam Raimi
 validation	George A. Romero
 validation	Alvin Alexis
 testing	James Stewart
-testing	Jo McKenna
+testing	Jo Mckenna
 testing	Doris
 testing	Louis Bernard
 testing	Daniel Gélin
@@ -2339,3 +2346,368 @@ testing	Hitchcock
 testing	Stewart
 testing	Que Sera
 testing	Albert Hall
+training	Darkhunters
+training	Hartley
+training	Laurie
+training	Kinski
+training	Minnelli
+training	Madonna
+training	Baldi
+training	Burton
+training	Rai
+training	Tarantino
+training	Boll
+training	Bela
+training	Julia
+training	Seagal
+training	Huston
+training	Wood
+training	Boorman
+training	Boll
+training	Armand
+training	Pete
+training	M. Night Shaymalan
+training	Corey
+training	Boll
+training	Burton
+training	Angela
+training	Hartley
+training	Rich Christiano
+training	Lugosi
+training	Altman
+training	Alan
+training	Frank
+training	Huppert
+training	Boorman
+training	Michael Jackson
+training	Richie
+training	Travolta
+training	Greenaway
+training	Huston
+training	Scacchi
+training	Kathy
+training	Warren
+training	Decarlo
+training	Stiller
+training	Mirren
+training	Hitcher
+training	Snyder
+training	Snider
+training	Rothrock
+training	Kathy
+training	Lang
+validation	Arnie
+validation	Campbell
+validation	Josie
+validation	Lugosi
+validation	Lugosi
+validation	Madonna
+validation	Bunuel
+validation	Frank
+validation	Sheen
+validation	Minnelli
+validation	Grayson
+validation	Sinatra
+validation	Coppola
+validation	Curt
+validation	Corey
+validation	Snyder
+validation	Boll
+validation	Kathy Bates
+validation	Troma
+validation	Hepburn
+validation	Tarantinos
+validation	Bunuel
+validation	Boll
+validation	Connery
+validation	Lynch
+validation	Sinatra
+validation	Sinatra
+validation	Boll
+validation	Gaiman
+validation	Hogan
+testing	Russo
+testing	Tarantino
+testing	Wood
+testing	Huston
+testing	Tarantino
+testing	Corey
+testing	Romero
+testing	Zucker
+testing	Kaas
+testing	Milland
+training	Foxx
+training	Kimberly Elise
+training	Jamie Kennedy
+training	Thelma Ritter
+training	Richard Widmark
+training	Richard Kiley
+training	John Woo
+training	Jackie Chan
+training	Shrek
+training	Johnny Kitagawa
+training	Wes Craven
+training	Wes Craven
+training	Rachel Mcadams
+training	Cillian Murphy
+training	Chuck Jones
+training	Ally Sheedy
+training	Sanjay
+training	Krishna Wamsi
+training	Paulie
+training	Tony Shalhoub
+training	Rosario Dawson
+training	Will Smith
+training	Sidney J. Furie
+training	Lundgren Rules
+training	Jennifer Baxter
+training	Parker
+training	Samantha
+training	Sam
+training	Soylent Green
+training	Tarantino
+training	Heston
+training	Tony Randall
+training	Debbie Reynolds
+training	Dvid Trainer
+training	Rachel Griffiths
+training	Griffiths
+training	Bud Tingwell
+training	Kenneth
+training	Kate Winslet
+training	Valerie
+validation	Tina Fey
+validation	Peet
+validation	Vincenzo Natali
+validation	Weber
+validation	Danny Tanner
+validation	Joey
+validation	Flynn
+validation	Verhoeven
+validation	Peggy
+validation	Beowulf
+validation	Romane Bohringer
+validation	Selina
+validation	Garrett
+validation	Annemarie Johnson
+validation	Deandre
+validation	Anderson
+validation	Raimi
+validation	Watson
+validation	Prot
+validation	Dominique Swain
+validation	Jeff
+validation	Dodsworth
+validation	Paul Reiser
+validation	Karate Kid
+validation	Huston
+validation	Marple
+validation	Candy
+validation	Mallrats
+validation	Emily
+validation	Gary Sherman
+validation	Ray Charles
+validation	Holmes
+validation	Hector Babenco
+validation	Tammy
+validation	Amir
+validation	Rosalind Russell Movies
+validation	Beavis
+validation	Dorothy Lamour
+validation	Nathalie Kelley
+validation	Stewart
+testing	Harald
+testing	Jonathan Flora
+testing	Dave Fleischer
+testing	Sister Mary
+testing	Taylor
+testing	Su Lizhen Chan
+testing	Papa Lazarou
+testing	Bambi
+testing	Meadows
+testing	Cecilia
+training	Willie Nelson
+training	Antonio
+training	Lane
+training	David Hasselhoff
+training	Boll
+training	Whitney Houston
+training	Claude Lelouch
+training	Batman
+training	Montgomery Clift
+training	Lonesome Jim
+training	Jack Warner
+training	Selma Blair
+training	Sean Connery
+training	Stang
+training	Alex
+training	Jimmy Durante
+training	Barbet Schroeder
+training	Blake Edwards
+training	Vince Guaraldi
+training	Romero
+training	De Sica
+training	Scott
+training	Kylie Minogue
+training	Turner
+training	Helen
+training	Saul Rubinek
+training	Dylan O'leary
+training	Turner
+training	Jean Smart
+training	Kay Lenz
+training	Channing
+training	Judi Dench
+training	Kelly
+training	Angelica
+training	Hitchcock
+training	Sam
+training	Kurtz
+training	Tommy
+training	Vince Mcmahon
+training	Madeleine
+validation	Rowan Atkinson
+validation	Kris Kristofferson
+validation	Priss
+validation	Robert Siodmak
+validation	Aubrey
+validation	Caan
+validation	Giallo
+validation	Granted Murphy
+validation	Bambi
+validation	Keiko
+validation	Ellen
+validation	Polo
+validation	Melanie Griffith
+validation	Spike Dudley
+validation	Garfield
+validation	Bellamy
+validation	Bollan
+validation	Ed Burns
+validation	Morgan J. Freeman
+validation	Peter
+validation	Machaty
+validation	Katie
+validation	Margera
+validation	Juliette Binoche
+validation	Madeleine
+validation	Scott Wolf
+validation	Trump
+validation	Nausicaa
+validation	Dunaway
+validation	Wolf
+validation	Neil Simon
+validation	Mark Dacascus'
+validation	Diaz
+validation	Reeves
+validation	Cecilia
+validation	Jackie Cooper
+validation	Yamamoto
+validation	Vincent Massey
+validation	Jane Austen
+validation	Andie Anderson
+testing	Moretti
+testing	Unhinged
+testing	Jim Carrey
+testing	Lugosi
+testing	Reese Witherspoon
+testing	Richards
+testing	Jeanne
+testing	Wilson
+testing	Ivana Milicervic
+testing	Porter
+training	Matthew
+training	Mcconaughey
+training	Peggy
+training	Goldie
+training	Gundam
+training	Marian
+training	Davies
+training	Bill Paxton
+training	Peter Bogdonavich
+training	Deniz Akkaya
+training	Howard Hughes
+training	Boris Karloff
+training	Sophia Loren
+training	Kinski
+training	Harry
+training	Giù La Testa
+training	Fidani
+training	Schwarzenegger
+training	Stephen King
+training	Sean Penn
+training	Che
+training	Kubrick
+training	Del Toro
+training	Oliver Stone
+training	Ashley
+training	Tatyana Samojlova
+training	Jason Segel
+training	Boris
+training	Murphy
+training	Rocky
+training	Muppet
+training	Nolan
+training	David Julyan
+training	Schrader
+training	Mishima
+training	Joan Crawford
+training	William
+training	Haines
+training	Nelson Algren
+training	Elmer Bernstein
+training	Kim Novak
+training	Zosch
+training	Frank
+training	 Mr. Magoo
+training	Nelson
+training	Frankie
+training	Mr. Bean
+training	Rowan Atkinson
+training	Fulci
+training	Lucio Fulci
+training	Gustav
+training	Mahler
+training	Armin Mueller-stahl
+training	Diane
+training	Patrick
+training	Dassin
+training	Jo
+validation	Jules Dassin
+validation	Harry
+validation	Kinski
+validation	Harry Langdon
+validation	David Tennant
+validation	Rose
+validation	Eccleston
+validation	Deborah Foreman
+validation	Fred
+validation	Nicholas Cage
+validation	Julie
+validation	Valley Girl
+validation	Shafi Inamdar
+validation	Hamlet
+validation	Claudius
+validation	Shakespeare
+validation	Michael Cimino
+validation	Averil
+validation	Chabert
+validation	Hearn
+validation	Sweeney Todd
+validation	Miike
+validation	Richard Chen
+validation	Takashi Miike
+validation	Lynch
+validation	Diane
+validation	Betty
+validation	Rogert Ebert
+validation	Camilla
+testing	Eccleston
+testing	Valley Girl
+testing	Claudius
+testing	Hearn
+testing	Miike
+testing	Diane
+testing	Ron Howard
+testing	Adam
+testing	David Lynch
