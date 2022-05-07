@@ -16,22 +16,22 @@ To download and use package, follow the steps below:
 
 Setting **use_saved_data** to **True** in the main function of project3.py will load and use the following files: precleaned_X.tsv and precleaned_y.tsv. This will not only use local data instead of downloading from github, but also skips dataset cleaning and feature extraction. This cuts down on runtime significantly. 
 
-use_saved_data on **line 124** of project3.py should be set to True if there are any issues due to runtime during the "Cleaning and sorting data..." portion of running project3.py. Runtime of this portion of the code took about 1.5 minutes on my machine. Total project3.py runtime was about 2 minutes.
+use_saved_data on **line 131** of project3.py should be set to True if there are any issues due to runtime during the "Cleaning and sorting data..." portion of running project3.py. Runtime of this portion of the code took about 1.5 minutes on my machine. Total project3.py runtime was about 2 minutes.
 
 # Web or External Libraries
-For this project I used several packages from the standard library and some external libraries. These included argparse, counter, glob, io, import, pickle, random, re, and urllib.request. In addition, the following external libraries were used pandas, spacy (and specifically en_core_web_lg), sklearn
+For this project I used several packages from the standard library and some external libraries. These included argparse, counter, glob, io, import, pickle, random, re, and urllib.request. In addition, the following external libraries were used pandas, spacy (and specifically en_core_web_lg), and sklearn.
 
 # Assumptions Made and Known Bugs
-The main assumption made is that due to the dataset used in this project, it is not possible to create a model with a high accuracy. This is due to the fact that any dataset that we train a model with, there will be many names in the testing and validation datasets that do not exist in the training model. Due to the fact that they do not exist in the training dataset, there will be no way to predict them correctly.
+The main assumption made is that due to the dataset used in this project, it is not possible to create a model with a high accuracy. This is due to the fact that any dataset that we train a model with, there will be many names in the testing and validation datasets that do not exist in the training dataset. Due to the fact that they do not exist in the training dataset, there will be no way to predict them correctly.
 
-While running this code with the presaved data in the resources folder, there are no known bugs. However, with new pull requests being made to the unredactor.tsv file, new bugs may be introduced that are not handled. The presaved data can be run by setting the boolean **use_saved_data** to **True** in the main function of project3.py.
+While running this code with the presaved data in the resources folder, there are no known bugs. However, with new pull requests being made to the unredactor.tsv file, new bugs may be introduced that are not currently handled. If this occurs, the presaved data can be run by setting the boolean **use_saved_data** to **True** in the main function of project3.py.
 
 Setting **use_saved_data** to **True** in the main function of project3.py will load and use the following files: precleaned_X.tsv and precleaned_y.tsv.
 
 # Functions and Approach to Development
-By creating a different dataset separate from the class-sourced dataset, I was able to get scores of at least 4% (higher might have been possible with more possible). However, this method was very unwieldy and resulted in memory issues. As a result, I stuck to using the class-sourced dataset, even though this resulted in lower scores. 
+By creating a different dataset separate from the class-sourced dataset, I was able to get scores of at least 4% (higher might have been possible with more experimentation). However, this method was very unwieldy and resulted in memory issues. As a result, I stuck to using the class-sourced dataset, even though this resulted in lower scores. 
 
-The functions to implement this project were spread out across 3 python files. Project3.py in the main file structure and Dataset.py and Makedata.py in the project3_functions folder. Makedata.py contains functions adapted from 
+The functions to implement this project were spread out across 3 python files. Project3.py in the main file structure and Dataset.py and Makedata.py in the project3_functions folder. Makedata.py contains functions adapted from project1 and is used to generate my dataset that I submitted.
 
 ### Project3.py
 The main functionality of project 3 are in this python file. Using extracted features, a random forest classifier is trained to predict the redacted names. 
@@ -100,7 +100,11 @@ Tests are performed with PyTest and local data. Tests are also set up with Githu
 Tests are split across two files: test_cleandata.py and test_trainsaved.py.
 
 ## test_cleandata.py
-This file contains tests that confirm that the dataset is loaded properly and the data is cleaned properly. This is done by loading via the created load_data() function with a locally stored unredactor.tsv file and confirming that the column names are as expected. This dataset is then shortned to only its head. By only passing 5 data entries instead of the full dataset, this allows for hand confirmation of test results. Next, the expected values are loaded from separate tsv files. The actual values gotten as a result of the function dataset.process_sent() and the expected values were then compared using numpy's testing function of assert_equal. This function allows comparison between numpy arrays.
+This file contains tests that confirm that the dataset is loaded properly and the data is cleaned properly. 
+
+This is done by loading via the created load_data() function with a locally stored unredactor.tsv file and confirming that the column names are as expected. This dataset is then shortned to only its head. By only passing 5 data entries instead of the full dataset, this allows for hand confirmation of test results. Next, the expected values are loaded from separate tsv files. The actual values gotten as a result of the function dataset.process_sent() and the expected values were then compared using numpy's testing function of assert_equal. This function allows comparison between numpy arrays.
 
 ## test_trainsaved.py
-This file contains tests that confirm that the presaved and cleaned data loads properly and results in the expected model scores for the testing and validation datasets. This is done by first loading the extracted features from the presaved and cleaned data with the load_dataset() function. This is then confirmed to have worked properly by confirming that the column names for the X and y dataframes match the expected column names. This comparision is done with numpy's testing function assert_equal. The model is then trained and scored on the loaded data. The expected score values are then compared to the actual score values to confirm that the model loaded properly. 
+This file contains tests that confirm that the presaved and cleaned data loads properly and results in the expected model scores for the testing and validation datasets. 
+
+This is done by first loading the extracted features from the presaved and cleaned data with the load_dataset() function. This is then confirmed to have worked properly by confirming that the column names for the X and y dataframes match the expected column names. This comparision is done with numpy's testing function assert_equal. The model is then trained and scored on the loaded data. The expected score values are then compared to the actual score values to confirm that the model loaded properly. 
