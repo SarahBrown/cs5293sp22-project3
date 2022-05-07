@@ -13,3 +13,4 @@ Tutorialspoint, https://www.tutorialspoint.com/How-to-randomize-the-items-of-a-l
 Anna Widiger, https://gist.github.com/widiger-anna/deefac010da426911381c118a97fc23f, Helped understand how to remove contractions with regex
 Askpython, https://www.askpython.com/python/list/python-list-comprehension, Python syntax
 Thomas Le Menestrel, https://medium.com/towards-entrepreneurship/importing-a-csv-file-from-github-in-a-jupyter-notebook-e2c28e7e74a5, Helped understand how to avoid byte vs str error when downloading tsv file
+Someone from class lecture, Zoom lecture time, Someone during class mentioned splitting data on '\t+' to get exceptions where there was more than one tab separator in the tsv file but I cannot remember who said it and I could not find name looking back over zoom lecture.

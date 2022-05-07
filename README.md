@@ -17,7 +17,59 @@ For this project I used several packages from the standard library and some exte
 
 ## Functions
 
+### Project3.py
+Stuff here about file
+
+#### def load_data():
+
+#### def train_model(X, y, save_model):
+
+#### def load_model():
+
+#### def main():
+
+### Dataset.py
+Stuff here about file
+
+#### def process_sent(df_part,save_data):
+
+#### def normalize_names(name):
+
+#### def remove_stop(str):
+
+#### def count_list(df_part):
+
+#### def count_word(no_stop):
+
+#### def count_redact(str):
+
+#### def clean_context(df):
+
+#### def pos_window(df_part):
+
+#### def make_pos_window(context):
+
+#### def how_much_data_overlap(y_train, y_test, y_valid, pred_valid, pred_test):
+
+#### Makedata.py
+Stuff here about file
+
+#### def redact_names(input_files, training_set_to_submit):
+         
+#### def redact_per_sent(inp):
+
+#### def char_len(text):
+
+#### def redact(text, start_char, end_char):
+
+#### def add_arguments():
+
+#### def get_inputfiles(input_glob):
+
+#### def main():
+
 # Assumptions Made and Known Bugs
 
 # Tests
 Tests are performed with PyTest and local data. Tests are also set up with Github Actions and PyTest to run automatically when code is pushed to the repository.
+
