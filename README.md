@@ -18,6 +18,8 @@ Setting **use_saved_data** to **True** in the main function of project3.py will 
 
 use_saved_data on **line 131** of project3.py should be set to True if there are any issues due to runtime during the "Cleaning and sorting data..." portion of running project3.py. Runtime of this portion of the code took about 1.5 minutes on my machine. Total project3.py runtime was about 2 minutes.
 
+If you wish to view the model's predictions, change **print_pred** = False to True on **line 155** project3.py. This was set to False to avoid excess print statements.
+
 # Web or External Libraries
 For this project I used several packages from the standard library and some external libraries. These included argparse, counter, glob, io, import, pickle, random, re, and urllib.request. In addition, the following external libraries were used pandas, spacy (and specifically en_core_web_lg), and sklearn.
 
@@ -31,7 +33,11 @@ Setting **use_saved_data** to **True** in the main function of project3.py will 
 # Functions and Approach to Development
 By creating a different dataset separate from the class-sourced dataset, I was able to get scores of at least 4% (higher might have been possible with more experimentation). However, this method was very unwieldy and resulted in memory issues. As a result, I stuck to using the class-sourced dataset, even though this resulted in lower scores. 
 
-The functions to implement this project were spread out across 3 python files. Project3.py in the main file structure and Dataset.py and Makedata.py in the project3_functions folder. Makedata.py contains functions adapted from project1 and is used to generate my dataset that I submitted.
+The resulting model was trained using various features. These features included the a cleaned context string, the length of the redacted text, the two most frequent words and their counts, and a parts of speech window of four words on either side of the redacted text. Due to the dataset and lack of overlap for many names, the strongest feature ended up being the length of the redacted text.
+
+The functions to implement this project were spread out across 3 python files. Project3.py in the main file structure and Dataset.py and Makedata.py in the project3_functions folder. Makedata.py contains functions adapted from project1 and is used to generate my dataset that I submitted. 
+
+Argparse was not used to handle various booleans that change program behavior to avoid any issues that might be caused with different run commands with automated testing. The booleans should not need to be changed, but if issues arise they are described in Directions to Install and Use Package.
 
 ### Project3.py
 The main functionality of project 3 are in this python file. Using extracted features, a random forest classifier is trained to predict the redacted names. 

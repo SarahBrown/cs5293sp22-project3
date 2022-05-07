@@ -152,5 +152,11 @@ def main():
     print(f'Validation Dataset:\n\tNumber of datapoints: {len(y_valid)}\n\tPrec: {prec_valid}\n\tRecall: {recall_valid}\n\tF1: {f1_valid}')
     print(f'Testing Dataset:\n\tNumber of datapoints: {len(y_test)}\n\tPrec: {prec_test}\n\tRecall: {recall_test}\n\tF1: {f1_test}')
 
+    print_pred = False
+    if (print_pred):
+        print("Predictions:")
+        for pred in range(len(y_test)):
+            print(f'\t{pred}\n\tDataset y: {y_test[pred]}.\n\tModel Predicted y: {pred_test[pred]}.')
+
 if __name__ == "__main__":
     main()
